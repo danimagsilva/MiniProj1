@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Daniel Silva · Técnico de Informática e Formador</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,600;7..72,800&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <header class="side">
+      <router-link to="/" class="brand">
+        <span class="mono">DS</span>
+        <span>Daniel Silva<small>Informática e formação</small></span>
+      </router-link>
+      <nav aria-label="Principal">
+        <router-link v-for="p in pages" :key="p.path" :to="p.path">{{ p.label }}</router-link>
+      </nav>
+    </header>
+
+    <main>
+      <router-view v-slot="{ Component }">
+        <transition name="page" mode="out-in"><component :is="Component" /></transition>
+      </router-view>
+    </main>
+
+    <!-- Rodapé global: aparece em todas as páginas -->
+    <footer class="foot">
+      <p>Daniel Neves Magalhães Silva · Carrazeda de Ansiães, Portugal</p>
+      <ul aria-label="Redes sociais">
+        <li v-for="s in socials" :key="s.name">
+          <a :href="s.url" target="_blank" rel="noopener" :aria-label="s.name" :title="s.name">
+            <i :class="s.icon"></i>
+          </a>
+        </li>
+      </ul>
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@3.4.38/dist/vue.global.prod.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue-router@4.4.3/dist/vue-router.global.prod.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
